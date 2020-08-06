@@ -1,0 +1,55 @@
+#logo {
+    max-height: 4.25em;
+    margin-bottom: 1em;
+
+}
+
+.banner {
+    background: rgb(200,246,255);
+    background: linear-gradient(90deg, rgba(200,246,255,1) 0%, rgba(74,185,248,1) 56%, rgba(27,107,212,1) 100%);
+}
+
+.centerText {
+    text-align: center;
+}
+
+.material-icons.redx {
+    color: red;
+    font-size: 50px;
+}
+
+.material-icons.deleteshow {
+    color: red;
+    font-size: 30px;
+}
+
+.material-icons.greencheck {
+    color: green;
+    font-size: 50px;
+}
+
+body {
+    background-color: black;
+
+}
+
+.wrapper {
+    background-color: white;
+    border-radius: 10px;
+}
+
+form {
+    margin: 1em;
+}
+
+.no-border {
+    border: none;
+}
+
+.floating {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background-color: black;
+    border-radius: 50px;
+}
