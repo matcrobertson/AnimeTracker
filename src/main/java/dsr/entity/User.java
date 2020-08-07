@@ -1,6 +1,8 @@
 package dsr.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity(name = "User")
 @Table(name= "user")
@@ -10,6 +12,12 @@ public class User {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     private int id;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private Set<UserAnime> usersAnime =  new HashSet<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private Set<Seasons> seasons =  new HashSet<>();
 
     @Column(name = "user_name")
     private String user_name;
