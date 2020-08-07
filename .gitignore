@@ -59,3 +59,4 @@ log4j2.properties
 AnimeProject.iml
 pom.xml
 WEB-INF/web.xml
+cleandb.sql

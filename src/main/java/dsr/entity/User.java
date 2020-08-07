@@ -1,35 +1,46 @@
 package dsr.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity(name = "User")
 @Table(name= "user")
 public class User {
 
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
     private int id;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<UserAnime> usersAnime =  new HashSet<>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private Set<Seasons> seasons =  new HashSet<>();
-
     @Column(name = "user_name")
-    private String user_name;
+    private String userName;
 
     @Column(name = "first_name")
-    private String first_name;
+    private String firstName;
 
     @Column(name= "last_name")
-    private String last_name;
+    private String lastName;
 
     @Column(name = "password")
     private String password;
+
+    public User(UserAnime userAnime, String userName,String firstName, String lastName, String password) {
+        usersAnime.add(userAnime);
+        this.userName = userName;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+    }
 
     public int getId() {
         return id;
@@ -39,28 +50,36 @@ public class User {
         this.id = id;
     }
 
-    public String getUser_name() {
-        return user_name;
+    public Set<UserAnime> getUsersAnime() {
+        return usersAnime;
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setUsersAnime(Set<UserAnime> usersAnime) {
+        this.usersAnime = usersAnime;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPassword() {

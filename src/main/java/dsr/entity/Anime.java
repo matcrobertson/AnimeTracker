@@ -29,6 +29,10 @@ public class Anime {
         return id;
     }
 
+    public Anime(String title) {
+        this.title = title;
+    }
+
     public void setId(int id) {
         this.id = id;
     }

@@ -28,5 +28,51 @@ public class UserAnime {
     @Column(name = "user_anime_link")
     private String userAnimeLink;
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Anime getAnime() {
+        return anime;
+    }
+
+    public void setAnime(Anime anime) {
+        this.anime = anime;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public int getSeasonNumber() {
+        return seasonNumber;
+    }
+
+    public void setSeasonNumber(int seasonNumber) {
+        this.seasonNumber = seasonNumber;
+    }
+
+    public int getEpisodeNumber() {
+        return episodeNumber;
+    }
+
+    public void setEpisodeNumber(int episodeNumber) {
+        this.episodeNumber = episodeNumber;
+    }
+
+    public String getUserAnimeLink() {
+        return userAnimeLink;
+    }
+
+    public void setUserAnimeLink(String userAnimeLink) {
+        this.userAnimeLink = userAnimeLink;
+    }
 }
