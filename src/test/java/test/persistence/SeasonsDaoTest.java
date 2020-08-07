@@ -1,6 +1,7 @@
 package test.persistence;
 
 import dsr.entity.Anime;
+import dsr.entity.Seasons;
 import dsr.persistence.GenericDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,14 +12,14 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
-public class AnimeDaoTest {
-    private GenericDao<Anime> genericDao;
+public class SeasonsDaoTest
+{
+    private GenericDao<Seasons> genericDao;
     private final Logger logger = LogManager.getLogger(this.getClass());
 
     @BeforeEach
     void setUp() {
-        genericDao = new GenericDao<>(Anime.class);
+        genericDao = new GenericDao<>(Seasons.class);
         Database database = Database.getInstance();
         database.runSQL("cleandb.sql");
 
@@ -29,47 +30,48 @@ public class AnimeDaoTest {
      */
     @Test
     void getByIdSuccess() {
-        Anime retrievedUser = (Anime) genericDao.getById(1);
-        assertEquals("naruto", retrievedUser.getTitle());
+        Seasons retrievedSeason = (Seasons) genericDao.getById(1);
+        assertEquals(25, retrievedSeason.getEpisodeTotal());
 
     }
     @Test
     void getByPropertyEqualSuccess() {
-        List<Anime> anime = genericDao.findByPropertyEqual("title", "naruto");
-        assertEquals(1, anime.size());
-        assertEquals(1, anime.get(0).getId());
+        List<Seasons> animeSeason = genericDao.findByPropertyEqual("episodeTotal", 5);
+        assertEquals(2, animeSeason.size());
+        assertEquals(3, animeSeason.get(0).getId());
     }
 
     @Test
     void updateSuccess() {
-        String newTitle = "Flying Spaghetti Monster";
-        Anime animeToUpdate = (Anime)genericDao.getById(3);
-        logger.debug(animeToUpdate);
-        animeToUpdate.setTitle(newTitle);
-        genericDao.saveOrUpdate(animeToUpdate);
-        Anime retrievedUser = (Anime)genericDao.getById(3);//
-        assertEquals(newTitle, retrievedUser.getTitle());
+        int newEpisodeTotal = 26;
+        Seasons seasonToUpdate = (Seasons) genericDao.getById(1);
+        logger.debug(seasonToUpdate);
+        seasonToUpdate.setEpisodeTotal(newEpisodeTotal);
+        genericDao.saveOrUpdate(seasonToUpdate);
+        Seasons retrievedSeason = (Seasons)genericDao.getById(3);//
+        assertEquals(newEpisodeTotal, seasonToUpdate.getEpisodeTotal());
     }
     /**
      * Verify successful insert of a user
      */
     @Test
     void insertSuccess() {
+        GenericDao<Anime> animeDao = new GenericDao<>(Anime.class);
+        Anime anime = (Anime)animeDao.getById(3);
+        Seasons newSeason = new Seasons(anime, 4, 24, "www.dot.com");
 
-        Anime newUser = new Anime("that Show");
-
-        int id = genericDao.insert(newUser);
+        int id = genericDao.insert(newSeason);
         assertNotEquals(0,id);
-        Anime insertedAnime = genericDao.getById(id);
-        assertEquals("that Show", insertedAnime.getTitle());
+        Seasons insertedSeason = genericDao.getById(id);
+        assertEquals(24, insertedSeason.getEpisodeTotal());
         // Could continue comparing all values, but
         // it may make sense to use .equals()
         // review .equals recommendations http://docs.jboss.org/hibernate/orm/5.2/userguide/html_single/Hibernate_User_Guide.html#mapping-model-pojo-equalshashcode
     }
+
     @Test
     void deleteSuccess() {
         genericDao.delete(genericDao.getById(2));
         assertNull(genericDao.getById(2));
     }
-
 }

@@ -25,6 +25,9 @@ public class Anime {
     @OneToMany(mappedBy = "anime", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<UserAnime> usersAnime =  new HashSet<>();
 
+    @OneToMany(mappedBy = "anime", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private Set<Seasons> animeSeasons =  new HashSet<>();
+
     public int getId() {
         return id;
     }
@@ -51,5 +54,13 @@ public class Anime {
 
     public void setUsersAnime(Set<UserAnime> usersAnime) {
         this.usersAnime = usersAnime;
+    }
+
+    public Set<Seasons> getAnimeSeasons() {
+        return animeSeasons;
+    }
+
+    public void setAnimeSeasons(Set<Seasons> animeSeasons) {
+        this.animeSeasons = animeSeasons;
     }
 }

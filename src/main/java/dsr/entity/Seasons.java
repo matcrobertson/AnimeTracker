@@ -17,17 +17,24 @@ public class Seasons {
     private int id;
 
     @ManyToOne
-    private Anime animeId;
+    private Anime anime;
 
 
     @Column(name = "season_number")
     private int seasonNumber;
 
     @Column(name = "episode_total")
-    private int episodeNumber;
+    private int episodeTotal;
 
     @Column(name = "search_url")
     private String searchUrl;
+
+    public Seasons(Anime anime,int seasonNumber, int episodeTotal, String searchUrl) {
+        this.anime = anime;
+        this.seasonNumber = seasonNumber;
+        this.episodeTotal = episodeTotal;
+        this.searchUrl = searchUrl;
+    }
 
     public int getId() {
         return id;
@@ -38,11 +45,11 @@ public class Seasons {
     }
 
     public Anime getAnimeId() {
-        return animeId;
+        return anime;
     }
 
     public void setAnimeId(Anime animeId) {
-        this.animeId = animeId;
+        this.anime = animeId;
     }
 
     public int getSeasonNumber() {
@@ -53,12 +60,12 @@ public class Seasons {
         this.seasonNumber = seasonNumber;
     }
 
-    public int getEpisodeNumber() {
-        return episodeNumber;
+    public int getEpisodeTotal() {
+        return episodeTotal;
     }
 
-    public void setEpisodeNumber(int episodeNumber) {
-        this.episodeNumber = episodeNumber;
+    public void setEpisodeTotal(int episodeTotal) {
+        this.episodeTotal = episodeTotal;
     }
 
     public String getSearchUrl() {

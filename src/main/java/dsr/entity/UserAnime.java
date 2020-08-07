@@ -1,9 +1,12 @@
 package dsr.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity(name = "UserAnime")
 @Table(name = "user_anime")
 public class UserAnime {
@@ -27,6 +30,14 @@ public class UserAnime {
 
     @Column(name = "user_anime_link")
     private String userAnimeLink;
+
+    public UserAnime(User user, Anime anime, int seasonNumber, int episodeNumber, String userAnimeLink) {
+        this.user = user;
+        this.anime = anime;
+        this.seasonNumber = seasonNumber;
+        this.episodeNumber = episodeNumber;
+        this.userAnimeLink = userAnimeLink;
+    }
 
     public int getId() {
         return id;
