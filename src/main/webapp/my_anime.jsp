@@ -1,4 +1,5 @@
 <html lang="en" dir="ltr">
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
     <head>
         <meta charset="utf-8">
         <title>My Anime</title>
@@ -48,115 +49,32 @@
             <article>
 
                 <div class="row">
-                      <div class="col s12 m4">
-                          <div class="card small">
+                    <c:forEach var="anime" items="${userAnime}">
+                        <div class="col s12 m4">
+                            <div class="card small">
+                                <div class="card-image waves-effect waves-block waves-light">
+                                    <a href="#" title="Delete this show"> <i class="floating material-icons deleteshow">cancel</i></a>
+                                    <img class="activator" alt="naruto" src="images/fillerCard.jpg">
+                                </div>
+                                <div class="card-content">
 
-                               <div class="card-image waves-effect waves-block waves-light">
-                                   <a href="#" title="Delete this show"> <i class="floating material-icons deleteshow">cancel</i></a>
+                                    <span class="card-title activator grey-text text-darken-4">${anime.title}<i class="material-icons right">more_vert</i></span>
+                                    <div class="w3-light-grey w3-small" style="border-radius: 10px">
+                                        <div class="w3-container w3-green " style="width:50%; border-radius: 10px">50%</div>
+                                    </div>
+                                    <p><a href="#" target="_blank">last updated link</a></p>
 
-                                   <img class="activator" src="images/fillerCard.jpg">
-                               </div>
-                               <div class="card-content">
-
-                                 <span class="card-title activator grey-text text-darken-4">Naruto<i class="material-icons right">more_vert</i></span>
-                                 <div class="w3-light-grey w3-small" style="border-radius: 10px">
-                                      <div class="w3-container w3-green " style="width:50%; border-radius: 10px">50%</div>
-                                 </div>
-                                 <p><a href="#" target="_blank">last updated link</a></p>
-
-                               </div>
-                               <div class="card-reveal">
-                                 <span class="card-title grey-text text-darken-4">Naruto<i class="material-icons right">close</i></span>
-                                 <p>This show is about ninjas and jitsus.</p>
-                                 <a href="#">Edit My Progress</a>
-                               </div>
-                           </div>
-                      </div>
-                      <div class="col s12 m4">
-                          <div class="card small">
-                               <div class="card-image waves-effect waves-block waves-light">
-                                   <a href="#" title="Delete this show"> <i class="floating material-icons deleteshow">cancel</i></a>
-                                 <img class="activator" src="images/fillerCard.jpg">
-                               </div>
-                               <div class="card-content">
-                                 <span class="card-title activator grey-text text-darken-4">Naruto<i class="material-icons right">more_vert</i></span>
-                                 <div class="w3-light-grey w3-small" style="border-radius: 10px">
-                                      <div class="w3-container w3-green " style="width:50%; border-radius: 10px">50%</div>
-                                 </div>
-                                 <p><a href="#" target="_blank">last updated link</a></p>
-
-                               </div>
-                               <div class="card-reveal">
-                                 <span class="card-title grey-text text-darken-4">Naruto<i class="material-icons right">close</i></span>
-                                 <p>This show is about ninjas and jitsus.</p>
-                                 <a href="#">Edit My Progress</a>
-                               </div>
-                           </div>
-                      </div>
-                      <div class="col s12 m4">
-                          <div class="card small">
-                               <div class="card-image waves-effect waves-block waves-light">
-                                   <a href="#" title="Delete this show"> <i class="floating material-icons deleteshow">cancel</i></a>
-                                 <img class="activator" src="images/fillerCard.jpg">
-                               </div>
-                               <div class="card-content">
-                                 <span class="card-title activator grey-text text-darken-4">Naruto<i class="material-icons right">more_vert</i></span>
-                                 <div class="w3-light-grey w3-small" style="border-radius: 10px">
-                                      <div class="w3-container w3-green " style="width:50%; border-radius: 10px">50%</div>
-                                 </div>
-                                 <p><a href="#" target="_blank">last updated link</a></p>
-
-                               </div>
-                               <div class="card-reveal">
-                                 <span class="card-title grey-text text-darken-4">Naruto<i class="material-icons right">close</i></span>
-                                 <p>This show is about ninjas and jitsus.</p>
-                                 <a href="#">Edit My Progress</a>
-                               </div>
-                           </div>
-                      </div>
-                      <div class="col s12 m4">
-                          <div class="card small">
-                               <div class="card-image waves-effect waves-block waves-light">
-                                   <a href="#" title="Delete this show"> <i class="floating material-icons deleteshow">cancel</i></a>
-                                 <img class="activator" src="images/fillerCard.jpg">
-                               </div>
-                               <div class="card-content">
-                                 <span class="card-title activator grey-text text-darken-4">Naruto<i class="material-icons right">more_vert</i></span>
-                                 <div class="w3-light-grey w3-small" style="border-radius: 10px">
-                                      <div class="w3-container w3-green " style="width:50%; border-radius: 10px">50%</div>
-                                 </div>
-                                 <p><a href="#" target="_blank">last updated link</a></p>
-
-                               </div>
-                               <div class="card-reveal">
-                                 <span class="card-title grey-text text-darken-4">Naruto<i class="material-icons right">close</i></span>
-                                 <p>This show is about ninjas and jitsus.</p>
-                                 <a href="#">Edit My Progress</a>
-                               </div>
-                           </div>
-                      </div>
-                      <div class="col s12 m4">
-                          <div class="card small">
-                               <div class="card-image waves-effect waves-block waves-light">
-                                   <a href="#" title="Delete this show"> <i class="floating material-icons deleteshow">cancel</i></a>
-                                 <img class="activator" src="images/fillerCard.jpg">
-                               </div>
-                               <div class="card-content">
-                                 <span class="card-title activator grey-text text-darken-4">Naruto<i class="material-icons right">more_vert</i></span>
-                                 <div class="w3-light-grey w3-small" style="border-radius: 10px">
-                                      <div class="w3-container w3-green " style="width:50%; border-radius: 10px">50%</div>
-                                 </div>
-                                 <p><a href="#" target="_blank">last updated link</a></p>
-
-                               </div>
-                               <div class="card-reveal">
-                                 <span class="card-title grey-text text-darken-4">Naruto<i class="material-icons right">close</i></span>
-                                 <p>This show is about ninjas and jitsus.</p>
-                                 <a href="#">Edit My Progress</a>
-                               </div>
-                           </div>
-                      </div>
+                                </div>
+                                <div class="card-reveal">
+                                    <span class="card-title grey-text text-darken-4">Naruto<i class="material-icons right">close</i></span>
+                                    <p>This show is about ninjas and jitsus.</p>
+                                    <a href="#">Edit My Progress</a>
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
                 </div>
+
 
 
             </article>
