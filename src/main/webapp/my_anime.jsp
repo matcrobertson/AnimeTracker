@@ -1,8 +1,9 @@
-<html lang="en" dir="ltr">
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-    <head>
-        <meta charset="utf-8">
-        <title>My Anime</title>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>My Anime</title>
     <link rel="stylesheet" href="css/index.css">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -12,73 +13,88 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-    </head>
-    <div class="wrapper">
+</head>
+<div class="wrapper">
 
 
     <nav class="banner">
 
         <div class="">
-          <a href="index.jsp"><img id="logo" src="images/goku_blast.png"></a>
-          <ul class="right">
-            <li><a href="add_anime.jsp">Add Anime</a></li>
+            <a href="index.jsp"><img id="logo" src="images/goku_blast.png"></a>
+            <ul class="right">
+                <li><a href="add_anime.jsp">Add Anime</a></li>
 
 
-            <li><a href="sign_in.jsp">Sign Out</a></li>
-          </ul>
+                <li><a href="sign_in.jsp">Sign Out</a></li>
+            </ul>
         </div>
-      </nav>
+    </nav>
     <body class="container">
-        <h1 class="centerText">Welcome, Bob Saget!<!--this name will be dynamic  --></h1>
+    <h1 class="centerText">Welcome, ${fullName}!<!--this name will be dynamic  --></h1>
 
-            <nav class="banner">
-                <div class="nav-wrapper">
-                  <form>
-                    <div class="input-field">
-                      <input id="search" type="search" required>
-                      <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                      <i class="material-icons">close</i>
-                    </div>
-                  </form>
+    <nav class="banner">
+        <div class="nav-wrapper">
+            <form>
+                <div class="input-field">
+                    <input id="search" type="search" required>
+                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                    <i class="material-icons">close</i>
                 </div>
-              </nav>
+            </form>
+        </div>
+    </nav>
 
 
 
-        <section>
-            <article>
+    <section>
+        <article>
 
-                <div class="row">
-                    <c:forEach var="anime" items="${userAnime}">
-                        <div class="col s12 m4">
-                            <div class="card small">
-                                <div class="card-image waves-effect waves-block waves-light">
-                                    <a href="#" title="Delete this show"> <i class="floating material-icons deleteshow">cancel</i></a>
-                                    <img class="activator" alt="naruto" src="images/fillerCard.jpg">
+            <div class="row">
+
+                <c:forEach var="userAnime" items="${userAnime}">
+                    <c:set var="initval" value="${0}"/>
+                    <c:set var="initEpisodes" value="${0}"/>
+                    <c:if test="${userAnime.seasonNumber > 1}">
+                        <c:forEach var="seasonEpisode" items="${userAnime.anime.animeSeasons}" begin="1" end="${userAnime.seasonNumber}">
+                            <c:set var="totalEpisodes" value="${initEpisodes + seasonEpisode.episodeTotal}"/>
+                            <c:set var="initEpisodes" value="${totalEpisodes}"/>
+                        </c:forEach>
+                    </c:if>
+                    <c:set var="totalEpisodes" value="${initEpisodes + userAnime.episodeNumber}"/>
+
+                    <c:forEach var="seasonCount" items="${userAnime.anime.animeSeasons}">
+                        <c:set var="seasontotal" value="${initval + seasonCount.episodeTotal}"/>
+                        <c:set var="initval" value="${seasontotal}"/>
+                    </c:forEach>
+                    <div class="col s12 m4">
+                        <div class="card small">
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <a href="#" title="Delete this show"> <i class="floating material-icons deleteshow">cancel</i></a>
+                                <img class="activator" alt="naruto" src="images/fillerCard.jpg">
+                            </div>
+                            <div class="card-content">
+
+                                <span class="card-title activator grey-text text-darken-4">${userAnime.anime.title}<i class="material-icons right">more_vert</i></span>
+                                <div class="w3-light-grey w3-small" style="border-radius: 10px">
+                                    <div class="w3-container w3-green " style="width:${fn:substring(totalEpisodes / seasontotal * 100,0,4)}%; border-radius: 10px">${fn:substring(totalEpisodes / seasontotal * 100,0,4)}%</div>
                                 </div>
-                                <div class="card-content">
+                                <p><a href="#" target="_blank">last updated link</a></p>
 
-                                    <span class="card-title activator grey-text text-darken-4">${anime.title}<i class="material-icons right">more_vert</i></span>
-                                    <div class="w3-light-grey w3-small" style="border-radius: 10px">
-                                        <div class="w3-container w3-green " style="width:50%; border-radius: 10px">50%</div>
-                                    </div>
-                                    <p><a href="#" target="_blank">last updated link</a></p>
-
-                                </div>
-                                <div class="card-reveal">
-                                    <span class="card-title grey-text text-darken-4">Naruto<i class="material-icons right">close</i></span>
-                                    <p>This show is about ninjas and jitsus.</p>
-                                    <a href="#">Edit My Progress</a>
-                                </div>
+                            </div>
+                            <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4">Naruto<i class="material-icons right">close</i></span>
+                                <p>This show is about ninjas and jitsus.</p>
+                                <a href="#">Edit My Progress</a>
                             </div>
                         </div>
-                    </c:forEach>
-                </div>
+                    </div>
+                </c:forEach>
+            </div>
 
 
 
-            </article>
-        </section>
+        </article>
+    </section>
     </body>
-    </div>
+</div>
 </html>

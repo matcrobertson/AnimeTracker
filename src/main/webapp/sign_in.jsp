@@ -15,7 +15,7 @@
 
     <nav class="banner">
         <div class="">
-          <a href="index.jsp"><img id="logo" alt="gokublaset" src="images/goku_blast.png"></a>
+          <a href="index111.jspjsp"><img id="logo" alt="gokublaset" src="images/goku_blast.png"></a>
           <ul class="right">
             <li><a href="index.jsp">Home</a></li>
             <li><a href="sign_up.jsp">Sign Up</a></li>
