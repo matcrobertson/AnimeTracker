@@ -4,14 +4,13 @@
 <head>
     <meta charset="utf-8">
     <title>My Anime</title>
-    <link rel="stylesheet" href="css/index.css">
     <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" >
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 </head>
 <div class="wrapper">
@@ -72,8 +71,48 @@
                             </div>
                             <div class="card-reveal">
                                 <span class="card-title grey-text text-darken-4">${animeCards.animeName}<i class="material-icons right">close</i></span>
-                                <p>This show is about ninjas and jitsus.</p>
-                                <a href="#">Edit My Progress</a>
+                                <ul class="collapsible" data-collapsible="accordion">
+                                    <li>
+                                        <div class="collapsible-header">
+                                            <i class="material-icons">
+                                                favorite</i>
+                                            Edit My Progress
+                                        </div>
+                                        <div class="collapsible-body">
+                                            <form>
+                                                <input type="text" name="" placeholder="Season #">
+                                                <input type="text" name="" placeholder="Episode #">
+                                                <input type="submit" >
+                                            </form>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="collapsible-header">
+                                            <i class="material-icons">history</i>
+                                            Edit Current Link
+                                        </div>
+                                        <div class="collapsible-body">
+                                            <form>
+                                                <input type="text" name="" placeholder="url goes here">
+                                                <input type="submit">
+                                            </form>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="collapsible-header">
+                                            <i class="material-icons">
+                                                favorite</i>
+                                            Add a Season
+                                        </div>
+                                        <div class="collapsible-body">
+                                            <form>
+                                                <input type="text" name="seasonNumber" placeholder="Season #">
+                                                <input type="text" name="episodeNumber" placeholder="Episode #">
+                                                <input type="submit" >
+                                            </form>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
