@@ -25,27 +25,33 @@
     <body class="container">
         <h1 class="centerText">Welcome! Please sign up</h1>
         <div class="row">
-           <form class="col s12">
+           <form action="signUp" method="get" class="col s12">
              <div class="row">
                <div class="input-field col s6">
-                 <input id="first_name" type="text" class="validate">
-                 <label for="first_name">First Name</label>
+                 <input id="firstName" name="firstName" type="text" class="validate">
+                 <label for="firstName">First Name</label>
                </div>
                <div class="input-field col s6">
-                 <input id="last_name" type="text" class="validate">
-                 <label for="last_name">Last Name</label>
+                 <input id="lastName" name="lastName" type="text" class="validate">
+                 <label for="lastName">Last Name</label>
                </div>
              </div>
              <div class="row">
                <div class="input-field col s6">
-                 <input id="password" type="password" class="validate">
-                 <label for="password">Password</label>
+                 <input id="password1" name="password1" type="password" class="validate">
+                 <label for="password1">Password</label>
                </div>
                <div class="input-field col s6">
-                 <input id="last_name" type="text" class="validate">
-                 <label for="last_name">Username</label>
+                 <input id="userName" name="userName" type="text" class="validate">
+                 <label for="userName">Username</label>
                </div>
              </div>
+               <div class="row">
+                   <div class="input-field col s6">
+                       <input id="password2" name="password2" type="password" class="validate">
+                       <label for="password2">retype Password</label>
+                   </div>>
+               </div>
              <input type="submit" name="submit" value="submit">
            </form>
          </div>

@@ -18,10 +18,10 @@
     <nav class="banner">
 
         <div class="">
-          <a href="index111.jspjsp"><img id="logo" src="images/goku_blast.png"></a>
+          <a href="index.jsp"><img id="logo" src="images/goku_blast.png"></a>
           <ul class="right">
             <li><a href="my_anime.jsp">My Anime</a></li>
-            <li><a href="sign_in.jsp">Sign Out</a></li>
+            <li><a href="signOut">Sign Out</a></li>
           </ul>
         </div>
       </nav>

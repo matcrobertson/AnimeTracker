@@ -1,5 +1,6 @@
 package dsr.controller;
 
+import dsr.entity.AnimeCards;
 import dsr.entity.User;
 import dsr.entity.UserAnime;
 import dsr.persistence.GenericDao;
@@ -37,9 +38,13 @@ public class SignIn extends HttpServlet {
             if(user.getPassword().equals(password)) {
                 session.setAttribute("sessionId", user.getId());
                 session.setAttribute("fullName", user.getFirstName() + " " + user.getLastName());
-                List<UserAnime> userAnimes = new ArrayList<>(user.getUsersAnime());
-                session.setAttribute("userAnime", userAnimes);
+                CardEngine cardEngine = new CardEngine();
+                List<AnimeCards> animeCards = cardEngine.makeCards(user.getId());
+                session.setAttribute("animeCards", animeCards);
                 RequestDispatcher dispatcher = req.getRequestDispatcher("/my_anime.jsp");
+                dispatcher.forward(req, resp);
+            } else {
+                RequestDispatcher dispatcher = req.getRequestDispatcher("/sign_in.jsp");
                 dispatcher.forward(req, resp);
             }
         }

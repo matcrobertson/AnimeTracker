@@ -25,7 +25,7 @@
                 <li><a href="add_anime.jsp">Add Anime</a></li>
 
 
-                <li><a href="sign_in.jsp">Sign Out</a></li>
+                <li><a href="signOut">Sign Out</a></li>
             </ul>
         </div>
     </nav>
@@ -51,43 +51,33 @@
 
             <div class="row">
 
-                <c:forEach var="userAnime" items="${userAnime}">
-                    <c:set var="initval" value="${0}"/>
-                    <c:set var="initEpisodes" value="${0}"/>
-                    <c:if test="${userAnime.seasonNumber > 1}">
-                        <c:forEach var="seasonEpisode" items="${userAnime.anime.animeSeasons}" begin="1" end="${userAnime.seasonNumber}">
-                            <c:set var="totalEpisodes" value="${initEpisodes + seasonEpisode.episodeTotal}"/>
-                            <c:set var="initEpisodes" value="${totalEpisodes}"/>
-                        </c:forEach>
-                    </c:if>
-                    <c:set var="totalEpisodes" value="${initEpisodes + userAnime.episodeNumber}"/>
+                <c:forEach var="animeCards" items="${animeCards}">
 
-                    <c:forEach var="seasonCount" items="${userAnime.anime.animeSeasons}">
-                        <c:set var="seasontotal" value="${initval + seasonCount.episodeTotal}"/>
-                        <c:set var="initval" value="${seasontotal}"/>
-                    </c:forEach>
                     <div class="col s12 m4">
                         <div class="card small">
                             <div class="card-image waves-effect waves-block waves-light">
-                                <a href="#" title="Delete this show"> <i class="floating material-icons deleteshow">cancel</i></a>
+
+
+                                <a href="deleteAnime?animeId=${animeCards.userAnimeId}" title="Delete this show"> <i class="floating material-icons deleteshow">cancel</i></a>
                                 <img class="activator" alt="naruto" src="images/fillerCard.jpg">
                             </div>
                             <div class="card-content">
 
-                                <span class="card-title activator grey-text text-darken-4">${userAnime.anime.title}<i class="material-icons right">more_vert</i></span>
+                                <span class="card-title activator grey-text text-darken-4">${animeCards.animeName}<i class="material-icons right">more_vert</i></span>
                                 <div class="w3-light-grey w3-small" style="border-radius: 10px">
-                                    <div class="w3-container w3-green " style="width:${fn:substring(totalEpisodes / seasontotal * 100,0,4)}%; border-radius: 10px">${fn:substring(totalEpisodes / seasontotal * 100,0,4)}%</div>
+                                    <div class="w3-container w3-green " style="width:${(animeCards.episodesWatched / animeCards.totalEpisodes) * 100}%; border-radius: 10px">${fn:substring((animeCards.episodesWatched / animeCards.totalEpisodes) * 100,0,4)}%</div>
                                 </div>
-                                <p><a href="#" target="_blank">last updated link</a></p>
+                                <p><a href="${animeCards.lastUpdatedLink}" target="_blank">last updated link</a></p>
 
                             </div>
                             <div class="card-reveal">
-                                <span class="card-title grey-text text-darken-4">Naruto<i class="material-icons right">close</i></span>
+                                <span class="card-title grey-text text-darken-4">${animeCards.animeName}<i class="material-icons right">close</i></span>
                                 <p>This show is about ninjas and jitsus.</p>
                                 <a href="#">Edit My Progress</a>
                             </div>
                         </div>
                     </div>
+
                 </c:forEach>
             </div>
 
