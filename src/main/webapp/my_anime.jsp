@@ -66,7 +66,7 @@
                                 <div class="w3-light-grey w3-small" style="border-radius: 10px">
                                     <div class="w3-container w3-green " style="width:${(animeCards.episodesWatched / animeCards.totalEpisodes) * 100}%; border-radius: 10px">${fn:substring((animeCards.episodesWatched / animeCards.totalEpisodes) * 100,0,4)}%</div>
                                 </div>
-                                <p><a href="${animeCards.lastUpdatedLink}" target="_blank">last updated link</a></p>
+                                <p><a href="http://${animeCards.lastUpdatedLink}" target="_blank">last updated link</a></p>
 
                             </div>
                             <div class="card-reveal">
@@ -79,9 +79,10 @@
                                             Edit My Progress
                                         </div>
                                         <div class="collapsible-body">
-                                            <form>
-                                                <input type="text" name="" placeholder="Season #">
-                                                <input type="text" name="" placeholder="Episode #">
+                                            <form action="updateAnime" method="get">
+                                                <input type="number" name="seasonNumber" placeholder="Season #">
+                                                <input type="number" name="episodeNumber" placeholder="Episode #">
+                                                <input style="display: none" type="text" name="userAnimeId" value="${animeCards.userAnimeId}">
                                                 <input type="submit" >
                                             </form>
                                         </div>
@@ -92,8 +93,9 @@
                                             Edit Current Link
                                         </div>
                                         <div class="collapsible-body">
-                                            <form>
-                                                <input type="text" name="" placeholder="url goes here">
+                                            <form action="updateAnime" method="get">
+                                                <input type="text" name="linkUpdate" placeholder="url goes here">
+                                                <input style="display: none" type="text" name="userAnimeId" value="${animeCards.userAnimeId}">
                                                 <input type="submit">
                                             </form>
                                         </div>
@@ -105,9 +107,10 @@
                                             Add a Season
                                         </div>
                                         <div class="collapsible-body">
-                                            <form>
-                                                <input type="text" name="seasonNumber" placeholder="Season #">
-                                                <input type="text" name="episodeNumber" placeholder="Episode #">
+                                            <form action="seasonsUpdate" method="get">
+                                                <input type="number" name="seasonNumber" placeholder="Season #">
+                                                <input type="number" name="episodeTotal" placeholder="Episode Total">
+                                                <input style="display: none" type="text" name="userAnimeId" value="${animeCards.userAnimeId}">
                                                 <input type="submit" >
                                             </form>
                                         </div>
