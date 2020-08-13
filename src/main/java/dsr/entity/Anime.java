@@ -28,6 +28,24 @@ public class Anime {
     @OneToMany(mappedBy = "anime", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<Seasons> animeSeasons =  new HashSet<>();
 
+    @Column(name = "image_url")
+    private String imageUrl;
+
+    public Anime(String title, String imageUrl) {
+        this.title = title;
+        this.imageUrl = imageUrl;
+    }
+
+
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     public int getId() {
         return id;
     }

@@ -6,6 +6,15 @@ public class AnimeCards {
     private String animeName;
     private String lastUpdatedLink;
     private int userAnimeId;
+    private String imageUrl;
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
     public int getUserAnimeId() {
         return userAnimeId;

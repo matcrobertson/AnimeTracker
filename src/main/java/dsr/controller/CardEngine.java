@@ -25,6 +25,7 @@ public class CardEngine {
 
             //set the name
             card.setAnimeName(anime.getAnime().getTitle());
+            card.setImageUrl(anime.getAnime().getImageUrl());
 
             int animeEpisodeTotal = 0;
             int userAnimeEpisodeTotal = 0;
@@ -42,6 +43,38 @@ public class CardEngine {
             card.setEpisodesWatched(userAnimeEpisodeTotal);
 
             animeCards.add(card);
+        }
+        return animeCards;
+    }
+
+    public ArrayList<AnimeCards> searchCards(String searchTerm, int userId) {
+        GenericDao<User> userDao = new GenericDao<>(User.class);
+        ArrayList<AnimeCards> animeCards = new ArrayList<>();
+        User user = userDao.getById(userId);
+        ArrayList<UserAnime> userAnimes = new ArrayList<>(user.getUsersAnime());
+        for(UserAnime userAnime: userAnimes) {
+            if(userAnime.getAnime().getTitle().contains(searchTerm)) {
+                AnimeCards card = new AnimeCards();
+                card.setAnimeName(userAnime.getAnime().getTitle());
+                card.setImageUrl(userAnime.getAnime().getImageUrl());
+                card.setUserAnimeId(userAnime.getId());
+                card.setLastUpdatedLink(userAnime.getUserAnimeLink());
+
+                int animeEpisodeTotal = 0;
+                int episodeTotal = 0;
+                int seasonsWatched = userAnime.getSeasonNumber();
+                int currentUserEpisode = userAnime.getEpisodeNumber();
+                for(Seasons season: userAnime.getAnime().getAnimeSeasons()){
+                    animeEpisodeTotal += season.getEpisodeTotal();
+                    if(season.getSeasonNumber() < seasonsWatched) {
+                        episodeTotal += season.getEpisodeTotal();
+                    }
+                }
+                episodeTotal += currentUserEpisode;
+                card.setTotalEpisodes(animeEpisodeTotal);
+                card.setEpisodesWatched(episodeTotal);
+                animeCards.add(card);
+            }
         }
         return animeCards;
     }

@@ -33,9 +33,9 @@
 
     <nav class="banner">
         <div class="nav-wrapper">
-            <form>
+            <form action="searchAnime" method="get">
                 <div class="input-field">
-                    <input id="search" type="search" required>
+                    <input id="search" type="search" name="searchTerm" required>
                     <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                     <i class="material-icons">close</i>
                 </div>
@@ -58,7 +58,7 @@
 
 
                                 <a href="deleteAnime?animeId=${animeCards.userAnimeId}" title="Delete this show"> <i class="floating material-icons deleteshow">cancel</i></a>
-                                <img class="activator" alt="naruto" src="images/fillerCard.jpg">
+                                <img class="activator" alt="naruto" src="${animeCards.imageUrl}">
                             </div>
                             <div class="card-content">
 
@@ -66,7 +66,7 @@
                                 <div class="w3-light-grey w3-small" style="border-radius: 10px">
                                     <div class="w3-container w3-green " style="width:${(animeCards.episodesWatched / animeCards.totalEpisodes) * 100}%; border-radius: 10px">${fn:substring((animeCards.episodesWatched / animeCards.totalEpisodes) * 100,0,4)}%</div>
                                 </div>
-                                <p><a href="http://${animeCards.lastUpdatedLink}" target="_blank">last updated link</a></p>
+                                <p><a href="${animeCards.lastUpdatedLink}" target="_blank">last updated link</a></p>
 
                             </div>
                             <div class="card-reveal">
@@ -104,7 +104,7 @@
                                         <div class="collapsible-header">
                                             <i class="material-icons">
                                                 favorite</i>
-                                            Add a Season
+                                            Add/Edit a Season
                                         </div>
                                         <div class="collapsible-body">
                                             <form action="seasonsUpdate" method="get">
